@@ -5,9 +5,9 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-      <Button disabled>Hello</Button>
-      <Button btnType={ButtonType.Primary} size={ButtonSize.Large}>Large</Button>
-      <Button btnType={ButtonType.Link} target="_blank" href="http://www.baidu.com" >baidu</Button>
+        <Button disabled>Hello</Button>
+        <Button btnType={ButtonType.Primary} size={ButtonSize.Large}>Large</Button>
+        <Button btnType={ButtonType.Link} href="http://www.baidu.com" >baidu</Button>
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
         </p>
