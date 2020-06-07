@@ -11,10 +11,11 @@ export interface MenuProps {
     mode?: MenuMode;
     style?: React.CSSProperties;
     onSelect?: (selectedIndex: string) => void;
+    defaultOpenSubMenus?: string[]
 }
 
 interface IMenuContext {
-    index: number;
+    index: string;
     onSelect?: (selectedIndex: string) => void;
     mode?: MenuMode;
     defaultOpenSubMenus?: string[]
@@ -45,7 +46,7 @@ const Menu: React.FC<MenuProps> = (props) => {
         return React.Children.map(children, (child, index) => {
             const childElement = child as React.FunctionComponentElement<MenuItemProps>
             const { displayName } = childElement.type
-            if (displayName === 'MenuItem' || displayName=== 'SubMenu') {
+            if (displayName === 'MenuItem' || displayName === 'SubMenu') {
                 return React.cloneElement(childElement, {
                     index: index.toString()
                 })
