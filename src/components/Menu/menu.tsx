@@ -1,4 +1,4 @@
-import React, { useState, createContext } from 'react'
+import React, { FC, useState, createContext, CSSProperties } from 'react'
 import classNames from 'classnames'
 import { MenuItemProps } from './menuItem'
 
@@ -9,7 +9,7 @@ export interface MenuProps {
     defaultIndex?: string;
     className?: string;
     mode?: MenuMode;
-    style?: React.CSSProperties;
+    style?: CSSProperties;
     onSelect?: (selectedIndex: string) => void;
     defaultOpenSubMenus?: string[]
 }
@@ -23,7 +23,7 @@ interface IMenuContext {
 
 export const MenuContext = createContext<IMenuContext>({ index: '0' })
 
-const Menu: React.FC<MenuProps> = (props) => {
+export const Menu: FC<MenuProps> = (props) => {
     const { className, mode, style, children, defaultIndex, onSelect, defaultOpenSubMenus } = props
     const [currentActive, setActive] = useState(defaultIndex)
     const calsses = classNames('ce-menu', className, {
@@ -55,7 +55,6 @@ const Menu: React.FC<MenuProps> = (props) => {
             }
         })
     }
-
     return (
         <ul className={calsses} style={style} data-testid="test-menu" >
             <MenuContext.Provider value={passedContext} >
@@ -64,9 +63,10 @@ const Menu: React.FC<MenuProps> = (props) => {
         </ul>
     )
 }
+
 Menu.defaultProps = {
     defaultIndex: '0',
     mode: 'horizontal',
     defaultOpenSubMenus: []
 }
-export default Menu
+export default Menu;
