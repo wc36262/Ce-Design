@@ -1,25 +1,63 @@
-import React, { FC, ReactElement, InputHTMLAttributes } from 'react'
+import React, { ReactElement, InputHTMLAttributes, ChangeEvent, forwardRef } from 'react'
+import classNames from 'classnames'
 import { IconProp } from '@fortawesome/fontawesome-svg-core'
+import Icon from '../Icon/icon'
 
 type InputSize = 'lg' | 'sm'
 
-export interface InputProps extents Omit < InputHTMLAttributes < HTMLElement >, 'size' > {
+export interface InputProps extends Omit<InputHTMLAttributes<HTMLElement>, 'size'> {
     disabled?: boolean;
     size?: InputSize;
     icon?: IconProp;
-    prepand?: string | ReactElement;
+    prepend?: string | ReactElement;
     append?: string | ReactElement;
-    onchange?: ''
+    onchange?: (e: ChangeEvent<HTMLElement>) => void
 }
 
-export const Input: FC<InputProps> = (props) => {
-    // 取出各种属性
+/**
+ *  Input 输入框 通过鼠标或键盘输入内容
+ */
 
-    // 根据属性计算不同的className
-
+export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
+    const {
+        disabled,
+        size,
+        icon,
+        prepend,
+        append,
+        style,
+        ...restProps
+    } = props
+    const cnames = classNames('ce-input-wrapper', {
+        [`input-size-${size}`]: size,
+        'is-disabled': disabled,
+        'input-group': prepend || append,
+        'input-group-append': !!append,
+        'input-group-prepend': !!prepend
+    })
+    const fixControlledValue = (value: any) => {
+        if (typeof value === 'undefined' || value === null) {
+            return ''
+        }
+        return value
+    }
+    if ('value' in props) {
+        delete restProps.defaultValue
+        restProps.value = fixControlledValue(props.value)
+    }
     return (
-        <>
-
-        </>
+        <div className={cnames} style={style}>
+            {prepend && <div className='ce-input-group-prepend'> {prepend}</div>}
+            {icon && <div className='icon-wrapper'> <Icon icon={icon} title={`title-${icon}`} /> </div>}
+            <input
+                ref={ref}
+                className="ce-input-inner"
+                disabled={disabled}
+                {...restProps}
+            />
+            {append && <div className="ce-input-group-append"> {append}</div>}
+        </div>
     )
-}
+})
+
+export default Input;
