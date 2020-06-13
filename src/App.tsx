@@ -11,11 +11,10 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <FontAwesomeIcon icon={faCoffee} size="lg" />
-
+        {/* <FontAwesomeIcon icon={faCoffee} size="lg" />
         <Button disabled>Hello</Button>
         <Button btnType={ButtonType.Primary} size={ButtonSize.Large}>Large</Button>
-        <Button btnType={ButtonType.Link} href="http://www.baidu.com" >baidu</Button>
+        <Button btnType={ButtonType.Link} href="http://www.baidu.com" >baidu</Button> */}
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
         </p>
