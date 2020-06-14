@@ -20,6 +20,7 @@ export interface InputProps extends Omit<InputHTMLAttributes<HTMLElement>, 'size
 
 export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
     const {
+        
         disabled,
         size,
         icon,
