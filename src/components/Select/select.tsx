@@ -36,7 +36,7 @@ export const Select: FC<SelectProps> = (props) => {
         name,
         disabled,
         onChange,
-        onVisibleChange
+        onVisibleChange,
     } = props
     const input = useRef<HTMLInputElement>(null)
     const containerRef = useRef<HTMLInputElement>(null)

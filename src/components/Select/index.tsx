@@ -7,7 +7,7 @@ export type ISelectComponent = FC<SelectProps> & {
   Option: FC<SelectOptionProps>
 }
 
-const TransSelect = Select as ISelectComponent
+const TransSelect = Select as ISelectComponent;
 TransSelect.Option = Option
 
 export default TransSelect
